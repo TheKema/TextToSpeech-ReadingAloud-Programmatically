@@ -46,7 +46,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         //Поле для ввода текста
         editTextToSpeech = new EditText(this);
         editTextToSpeech.setId(View.generateViewId());
-        editTextToSpeech.setHint("Put your text here");
+        editTextToSpeech.setHint(R.string.putText);
         editTextToSpeech.setTextAppearance(this,R.style.textStyle);
         editTextToSpeech.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         Display display = getWindowManager().getDefaultDisplay();
@@ -80,11 +80,11 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
             public void onClick(View view) {
                 if (!languageEn) {
                     result = textToSpeech.setLanguage(localeRus);
-                    Toast.makeText(MainActivity.this, "Language: RU", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.langRu, Toast.LENGTH_SHORT).show();
                     languageEn = true;
                 } else {
                     result = textToSpeech.setLanguage(Locale.US);
-                    Toast.makeText(MainActivity.this, "Language: EN", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.langEng, Toast.LENGTH_SHORT).show();
                     languageEn = false;
                 }
             }
@@ -103,7 +103,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
             public void onClick(View view) {
                 final CharSequence[] items = {"0.5", "1.0", "1.5", "2.0", "2.5", "3.0"};
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Pick a speech rate");
+                builder.setTitle(R.string.speechRate);
                 builder.setItems(items, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int item) {
                         Toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();
@@ -218,12 +218,12 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         if (status == TextToSpeech.SUCCESS) {
             if (result == TextToSpeech.LANG_MISSING_DATA
                     || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                Log.e("TTS", "Извините, этот язык не поддерживается");
+                Toast.makeText(this,R.string.lanNotSup,Toast.LENGTH_SHORT).show();
             } else {
                 btnStart.setEnabled(true);
             }
         } else {
-            Log.e("TTS", "Ошибка!");
+            Toast.makeText(this,R.string.error,Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TextToSpeechApplication</string>
+    <string name="putText">Put your text here</string>
+    <string name="langRu">Language: RU</string>
+    <string name="langEng">Language: EN</string>
+    <string name="speechRate">Pick a speech rate</string>
+    <string name="lanNotSup">This language is not supported.</string>
+    <string name="error">Error!</string>
 </resources>
